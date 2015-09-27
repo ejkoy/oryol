@@ -24,8 +24,8 @@ public:
     String DefaultFontName;
     /// default font size
     int32 DefaultFontSize = 14;
-    /// initial glyph set to prevent excessive reconstruction of font texture
-    StringAtom GlyphSet = " !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~•·";
+    /// initial glyph set to prevent excessive reconstruction of font texture (\xE2\x80\xA2\xC2\xB7 == •·, for skip visual studio build warning C4819)
+    StringAtom GlyphSet = " !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~\xE2\x80\xA2\xC2\xB7";
 
     /// resource pool size
     int32 ResourcePoolSize = 256;
