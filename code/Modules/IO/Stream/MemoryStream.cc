@@ -51,25 +51,9 @@ MemoryStream::alloc(int32 newCapacity) {
         return;
     }
     o_assert(this->size <= newCapacity);
-    
-    // allocate new buffer
-    const int32 newBufSize = newCapacity;
-    uchar* newBuffer = (uchar*) Memory::Alloc(newBufSize);
-    
-    // need to move content?
-    if (this->size > 0) {
-        o_assert(this->buffer);
-        Memory::Copy(this->buffer, newBuffer, this->size);
-    }
-    
-    // need to free old buffer?
-    if (this->buffer) {
-        Memory::Free(this->buffer);
-        this->buffer = nullptr;
-    }
-    
-    // write new values
-    this->buffer = newBuffer;
+
+    this->buffer = (uchar*)Memory::ReAlloc(this->buffer, newCapacity);
+
     this->capacity = newCapacity;
 }
 
